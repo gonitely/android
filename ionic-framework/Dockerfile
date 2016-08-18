@@ -8,6 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     IONIC_VERSION=1.7.16 \
     BOWER_VERSION=1.7.7 \
     CORDOVA_VERSION=6.0.0 \
+    CORDOVA_COMMON_VERSION=1.4.1 \
     GRUNT_VERSION=0.1.13 \
     GULP_VERSION=3.9.1
 
@@ -19,7 +20,7 @@ RUN apt-get -qq update &&  \
     tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 && \
     rm "node-v$NODE_VERSION-linux-x64.tar.gz" && \
     npm install -g --silent npm@"$NPM_VERSION" && \
-    npm install -g --silent grunt-cli@"$GRUNT_VERSION" bower@"$BOWER_VERSION"  cordova@"$CORDOVA_VERSION" ionic@"$IONIC_VERSION" gulp@"$GULP_VERSION" && \
+    npm install -g --silent grunt-cli@"$GRUNT_VERSION" bower@"$BOWER_VERSION" cordova@"$CORDOVA_VERSION" cordova-common@"$CORDOVA_COMMON_VERSION" ionic@"$IONIC_VERSION" gulp@"$GULP_VERSION" && \
     npm cache clear && \
     # gem install fastlane supply \
     gem install -q sass
