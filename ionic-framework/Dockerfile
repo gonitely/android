@@ -3,14 +3,7 @@ MAINTAINER bitard [dot] michael [at] gmail [dot] com
 
 ENV DEBIAN_FRONTEND=noninteractive \
     ANDROID_HOME=/opt/android-sdk-linux \
-    NODE_VERSION=5.6.0 \
-    NPM_VERSION=3.9.3 \
-    IONIC_VERSION=2.0.0 \
-    BOWER_VERSION=1.7.7 \
-    CORDOVA_VERSION=6.0.0 \
-    CORDOVA_COMMON_VERSION=1.4.1 \
-    GRUNT_VERSION=0.1.13 \
-    GULP_VERSION=3.9.1
+    NODE_VERSION=5.6.0
 
 # Install basics
 RUN apt-get -qq update &&  \
@@ -63,14 +56,9 @@ RUN add-apt-repository ppa:brightbox/ruby-ng -y && \
     apt-get -qq install -y build-essential ruby2.0-dev ruby2.0 > /dev/null && \
     gem install -q fastlane supply sass > /dev/null
 
-RUN add-apt-repository ppa:cwchien/gradle -y && \
-    apt-get -qq update && \
-    apt-get -qq install gradle
-
-# RUN npm install -g npm@"$NPM_VERSION"
-RUN npm install -g --silent grunt-cli@"$GRUNT_VERSION" \
-    bower@"$BOWER_VERSION" \
-    cordova@"$CORDOVA_VERSION" \
-    cordova-common@"$CORDOVA_COMMON_VERSION" \
-    ionic@"$IONIC_VERSION" && \
+RUN npm install -g --silent grunt-cli@0.1.13 \
+    bower@1.7.7 \
+    cordova@6.0.0 \
+    cordova-common@1.4.1 \
+    ionic@1.7.16 && \
     npm cache clear
