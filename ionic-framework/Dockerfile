@@ -5,9 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive \
     ANDROID_HOME=/opt/android-sdk-linux \
     NODE_VERSION=5.6.0 \
     NPM_VERSION=3.9.3 \
-    IONIC_VERSION=1.7.16 \
+    IONIC_VERSION=2.0.0 \
     BOWER_VERSION=1.7.7 \
-    CORDOVA_VERSION=5.2.0 \
+    CORDOVA_VERSION=6.0.0 \
     CORDOVA_COMMON_VERSION=1.4.1 \
     GRUNT_VERSION=0.1.13 \
     GULP_VERSION=3.9.1
@@ -18,14 +18,6 @@ RUN apt-get -qq update &&  \
     curl --retry 3 -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" && \
     tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 && \
     rm "node-v$NODE_VERSION-linux-x64.tar.gz"
-
-# RUN npm install -g npm@"$NPM_VERSION"
-RUN npm install -g --silent grunt-cli@"$GRUNT_VERSION" \
-    bower@"$BOWER_VERSION" \
-    cordova@"$CORDOVA_VERSION" \
-    cordova-common@"$CORDOVA_COMMON_VERSION" \
-    ionic@"$IONIC_VERSION" && \
-    npm cache clear
 
 #ANDROID
 #JAVA
@@ -67,6 +59,18 @@ RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter build-tools-22.0.1"]
 
 RUN add-apt-repository ppa:brightbox/ruby-ng -y && \
+    apt-get -qq update > /dev/null && \
+    apt-get -qq install -y build-essential ruby2.0-dev ruby2.0 > /dev/null && \
+    gem install -q fastlane supply sass > /dev/null
+
+RUN add-apt-repository ppa:cwchien/gradle -y && \
     apt-get -qq update && \
-    apt-get -qq install -y build-essential ruby2.0-dev ruby2.0 && \
-    gem install -qq fastlane supply sass
+    apt-get -qq install gradle
+
+# RUN npm install -g npm@"$NPM_VERSION"
+RUN npm install -g --silent grunt-cli@"$GRUNT_VERSION" \
+    bower@"$BOWER_VERSION" \
+    cordova@"$CORDOVA_VERSION" \
+    cordova-common@"$CORDOVA_COMMON_VERSION" \
+    ionic@"$IONIC_VERSION" && \
+    npm cache clear
