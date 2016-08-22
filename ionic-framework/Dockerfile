@@ -60,5 +60,5 @@ RUN npm install -g --silent grunt-cli@0.1.13 \
     bower@1.7.7 \
     cordova@6.2.0 \
     cordova-common@1.4.1 \
-    ionic@1.7.16 && \
+    ionic@2.0.0 && \
     npm cache clear
