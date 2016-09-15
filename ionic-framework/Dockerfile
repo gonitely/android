@@ -62,3 +62,5 @@ RUN npm install -g --silent grunt-cli@0.1.13 \
     cordova-common@1.4.1 \
     ionic@2.0.0 && \
     npm cache clear
+
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter extra"]
