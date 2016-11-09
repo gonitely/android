@@ -33,7 +33,7 @@ RUN echo ANDROID_HOME="${ANDROID_HOME}" >> /etc/environment && \
 
 # Install Android SDK
     cd /opt && \
-    wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz && \
+    wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r23.0.1-linux.tgz && \
     tar xzf android-sdk.tgz && \
     rm -f android-sdk.tgz && \
     chown -R root. /opt
@@ -48,8 +48,8 @@ COPY tools /opt/tools
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter platform-tools"]
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter tools"]
 RUN unzip -qq -o ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
-RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter android-22"]
-RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter build-tools-22.0.1"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter android-23"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter build-tools-23.0.1"]
 
 RUN add-apt-repository ppa:brightbox/ruby-ng -y && \
     apt-get -qq update > /dev/null && \
