@@ -40,7 +40,7 @@ RUN echo ANDROID_HOME="${ANDROID_HOME}" >> /etc/environment && \
 
 # Setup environment
 
-ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:/opt/tools
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:/opt/tools:${ANDROID_HOME}/build-tools/23.0.1
 
 # Install sdk elements
 COPY tools /opt/tools
