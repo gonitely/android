@@ -50,6 +50,8 @@ RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-
 RUN unzip -qq -o ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter android-23"]
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter build-tools-23.0.1"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter extra-google-m2repository"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk -s --all --no-ui --filter extra-android-m2repository"]
 
 RUN add-apt-repository ppa:brightbox/ruby-ng -y && \
     apt-get -qq update > /dev/null && \
